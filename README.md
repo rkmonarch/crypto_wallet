@@ -1,6 +1,6 @@
 # crypto_wallet
 
-A new Flutter project.
+Non custodial wallet created in flutter for EVM based chains.
 
 ## Getting Started
 
