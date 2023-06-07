@@ -2,8 +2,6 @@ import 'package:crypto_wallet/provider/wallet_provider.dart';
 import 'package:crypto_wallet/resources/ui_helpers.dart';
 import 'package:crypto_wallet/screens/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web3dart/web3dart.dart';
 
