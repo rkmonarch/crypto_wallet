@@ -1,17 +1,13 @@
-import 'package:bip39/bip39.dart';
-import 'package:crypto_wallet/provider/wallet_provider.dart';
 import 'package:crypto_wallet/resources/ui_helpers.dart';
 import 'package:crypto_wallet/screens/generate_mnemonic_page.dart';
 import 'package:crypto_wallet/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<WalletProvider>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

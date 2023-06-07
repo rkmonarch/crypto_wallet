@@ -1,9 +1,9 @@
 import 'package:crypto_wallet/provider/wallet_provider.dart';
 import 'package:crypto_wallet/resources/ui_helpers.dart';
+import 'package:crypto_wallet/screens/verify_mnemonic_page.dart';
 import 'package:crypto_wallet/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 class GenerateMnemonicPage extends StatelessWidget {
@@ -14,6 +14,18 @@ class GenerateMnemonicPage extends StatelessWidget {
     final provider = Provider.of<WalletProvider>(context);
     final mnemonic = provider.generateMemonics();
     final mnemonicWords = mnemonic.split(' ');
+    void copyToClipboard() {
+      Clipboard.setData(ClipboardData(text: mnemonic));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Mnemonic Copied to clipboard")));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (builder) => VerifyMnemonicPage(
+                    mnemonic: mnemonic,
+                  )));
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -41,6 +53,16 @@ class GenerateMnemonicPage extends StatelessWidget {
                           style: TextStyle(fontSize: 16),
                         ),
                       )),
+            ),
+            vSpaceMedium(context),
+            Center(
+              child: Button(
+                width: deviceWidth(context) / 1.5,
+                ontap: () {
+                  copyToClipboard();
+                },
+                text: "Copy to clipboard",
+              ),
             )
           ],
         ),
