@@ -1,5 +1,6 @@
 import 'package:crypto_wallet/resources/ui_helpers.dart';
 import 'package:crypto_wallet/screens/generate_mnemonic_page.dart';
+import 'package:crypto_wallet/screens/import_wallet.dart';
 import 'package:crypto_wallet/widgets/button.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         title: Text("Crypto Wallet"),
       ),
@@ -19,7 +21,7 @@ class LoginPage extends StatelessWidget {
           children: [
             Button(
               width: deviceWidth(context) / 1.5,
-              ontap: () async {
+              ontap: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -30,7 +32,10 @@ class LoginPage extends StatelessWidget {
             vSpaceMedium(context),
             Button(
               width: deviceWidth(context) / 1.5,
-              ontap: () async {},
+              ontap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ImportWallet()));
+              },
               text: "Import from SEED",
             ),
           ],

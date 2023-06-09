@@ -1,4 +1,6 @@
+import 'package:crypto_wallet/provider/moralis_provider.dart';
 import 'package:crypto_wallet/provider/wallet_provider.dart';
+import 'package:crypto_wallet/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,17 +11,22 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<WalletProvider>(
-      create: (context) => WalletProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Crypto Wallet',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<WalletProvider>(
+          create: (context) => WalletProvider(),
         ),
-        home: WalletScreen(),
-        // LoginPage()  for starting the root as a login page
-      ),
+        Provider<MoralisProvider>(
+          create: (context) => MoralisProvider(),
+        ),
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Crypto Wallet',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: LoginPage()),
     );
   }
 }

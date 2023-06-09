@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@moralisweb3/common-evm-utils": "^2.22.1",
+    "express": "^4.18.2",
+    "moralis": "^2.22.1"
+  },
+  "type": "module"
+}
