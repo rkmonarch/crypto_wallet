@@ -40,7 +40,7 @@ class _WalletPageState extends State<WalletPage> {
     final _balance = await provider.getBalance(walletAddress);
     var data = jsonDecode(_balance);
     setState(() {
-      balance = data['balance'] / 1000000000000000000;
+      balance = (int.parse(data['balance']) / 1000000000000000000).toString();
     });
   }
 
