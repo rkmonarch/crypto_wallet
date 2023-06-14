@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:crypto_wallet/provider/moralis_provider.dart';
+import 'package:crypto_wallet/provider/paper_provider.dart';
 import 'package:crypto_wallet/provider/wallet_provider.dart';
 import 'package:crypto_wallet/resources/ui_helpers.dart';
 import 'package:crypto_wallet/screens/login_page.dart';
@@ -34,6 +35,17 @@ class _WalletPageState extends State<WalletPage> {
       });
       lg.wtf(walletAddress);
     }
+  }
+
+  void sendNft() async {
+    final provider = PaperService();
+    final _balance = await provider.sendNFT(
+        chain: "Mumbai",
+        collectionDescription: "Crypto wallet first NFT drop",
+        collectionName: 'Crypto Wallet',
+        nfts: [walletAddress]);
+    var data = jsonDecode(_balance);
+    lg.wtf(data);
   }
 
   void getBalance() async {
@@ -131,7 +143,11 @@ class _WalletPageState extends State<WalletPage> {
                     children: [
                       CircleAvatar(
                         radius: 25,
-                        child: Icon(Icons.send),
+                        child: IconButton(
+                            onPressed: () {
+                              sendNft();
+                            },
+                            icon: Icon(Icons.send)),
                       ),
                       CircleAvatar(
                         radius: 25,
@@ -178,7 +194,7 @@ class _WalletPageState extends State<WalletPage> {
                                       ),
                                     ),
                                   ]),
-                                  Text("data333"),
+                                  Text("NFTs"),
                                   Center(
                                     child: ListTile(
                                       leading: Icon(Icons.logout),
